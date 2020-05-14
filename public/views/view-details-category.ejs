@@ -1,0 +1,55 @@
+<%- include('header') %>
+
+<div class="container">
+  <h2>View Category Data</h2>
+  <p>The .table-bordered class adds borders to a table:</p>            
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID's</th>
+        <th>Category Name</th>
+        <th>Project Name</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%if(records.length>0){%>
+        <% records.forEach((item)=>{%>             
+        <tr>
+            <td><%=item._id%></td>
+            <td><%=item.categoryname%></td>
+            <td><%=item.project_name%></td>
+            <td><%=item.categorydetails%></td>
+            <td>
+              <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal<%=item._id%>">Open Modal</button>             
+              <a href="/routes/view-details-category/edit/<%=item._id%>">Edit</a>
+            <a href="/routes/view-details-category/delete/<%=item._id%>">Delete</a></td>
+        </tr>
+        <div class="modal fade" id="myModal<%=item._id%>" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><%=item.categoryname%></h4>
+              </div>
+              <div class="modal-body">
+                <p><%- item.categorydetails%></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <%});%> 
+        <%}%>
+    </tbody>
+  </table>
+  
+
+</div>
+<%- include('footer') %>

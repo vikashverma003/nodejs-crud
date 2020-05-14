@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><%=title %></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2 style="text-align:center">Edit Category</h2>
+  <div class="panel-body">       
+   
+  <form class="form-horizontal" action="/routes/password-category/edit/" method="POST">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Category Name:</label>
+      <div class="col-sm-10">
+          <input type="hidden" id="id" name="id" value="<%=records._id%>">
+        <input type="text" class="form-control" id="catname" placeholder="enter the Category" name="catname" value="<%=records.categoryname%>">
+      </div>
+      <%if(error!=''){%>
+       <p style="text-align:center;color:red;"><%=error.catname.msg%></p>
+        <%}%>
+        <%if(success!=''){%>
+          <p style="text-align:center;color:rgb(10, 22, 10);"><%=success%> </p>
+           <%}%>
+    </div>
+
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+
+</body>
+</html>

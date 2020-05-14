@@ -1,0 +1,56 @@
+<%- include('header') %>
+
+<div class="container">
+  <h2>View Category Data</h2>
+  <p>The .table-bordered class adds borders to a table:</p>            
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID's</th>
+        <th>Category Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%if(records.length>0){%>
+        <% records.forEach((item)=>{%>             
+        <tr>
+            <td><%=item._id%></td>
+            <td><%=item.categoryname%></td>
+            <td><a href="/routes/password-category/edit/<%=item._id%>">Edit</a>
+            <a href="/routes/password-category/delete/<%=item._id%>">Delete</a></td>
+        </tr>
+        <%});%> 
+        <%}%>
+    </tbody>
+  </table>
+  <% if (pages > 0) { %>
+    <ul class="pagination text-center">
+        <% if (current == 1) { %>
+            <li class="disabled"><a>First</a></li>
+        <% } else { %>
+            <li><a href="/routes/view-all-password/1">First</a></li>
+        <% } %>
+        <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+        <% if (i !== 1) { %>
+            <li class="disabled"><a>...</a></li>
+        <% } %>
+        <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+            <% if (i == current) { %>
+                <li class="active"><a><%= i %></a></li>
+            <% } else { %>
+                <li><a href="/routes/view-all-password/<%= i %>"><%= i %></a></li>
+            <% } %>
+            <% if (i == Number(current) + 4 && i < pages) { %>
+                <li class="disabled"><a>...</a></li>
+            <% } %>
+        <% } %>
+        <% if (current == pages) { %>
+            <li class="disabled"><a>Last</a></li>
+        <% } else { %>
+            <li><a href="/routes/view-all-password/<%= pages %>">Last</a></li>
+        <% } %>
+    </ul>
+<% } %>
+</div>
+<%- include('footer') %>

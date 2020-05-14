@@ -1,0 +1,39 @@
+<%- include('header') %>
+
+<div class="container">
+  <h2 style="text-align:center">Add details of Category</h2>
+  <div class="panel-body">       
+    <%if(success!=''){%>
+        <p style="text-align:center;color:green;"><%=success%> </p>
+         <%}%>   
+  <form class="form-horizontal" action="/routes/details-category/" method="POST">
+        <div class="form-group">
+          <label for="exampleFormControlSelect2">Select Category</label>
+          <select  class="form-control" id="catname" name="catename">
+            <option value="">select category</option>
+            <%if(records.length>0){%>
+                <% records.forEach((item)=>{%>
+                    <option value="<%=item.categoryname%>"><%=item.categoryname%></option>
+                <%});%>
+                <%}%>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Project Name</label>
+            <input type="text" class="form-control"  name="project_name">
+          </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Category Details</label>
+          <textarea class="form-control"  rows="3" name="category"></textarea>
+        </div>
+        <div class="form-group">        
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+          </div>
+      
+  </form>
+</div>
+</div>
+
+<%- include('footer') %>
